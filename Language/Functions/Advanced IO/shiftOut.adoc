@@ -102,6 +102,9 @@ Der dataPin und der clockPin müssen vorher als Outputs konfiguriert sein. Dies 
 
 shiftOut shiftet aktuell maximal 1 Byte (8 bits) hinaus. Wenn Werte größer 255 hinausgeshiftet werden sollen, benötigt das Register 2 Schritte.
 [source,arduino]
+
+Das 74HC595 Shift-Register liefert anfangs undefinierte Ausgaben, was zu Fehlern oder je nach Schaltung auch zu erheblichen Gesamtströmen führen kann.
+Daher bieten einige Hersteller (wie Nexperia, Texas-Instruments, ...) einen OE! Pin (output enable) der anfangs mittels Pullup-Widerstand direkt an VCC geschaltet sein sollte. Und mittels Arduino-IO erst dann auf low gezogen wird, wenn die ersten Daten mittels shiftOut eingeschoben wurden.
 ----
 // Beispiel für MSBFIRST:
 int data = 500;
